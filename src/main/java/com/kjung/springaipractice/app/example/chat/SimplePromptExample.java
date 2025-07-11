@@ -1,5 +1,6 @@
 package com.kjung.springaipractice.app.example.chat;
 
+import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.http.MediaType;
@@ -9,14 +10,11 @@ import org.springframework.web.bind.annotation.RestController;
 import reactor.core.publisher.Flux;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/v1/example/simple")
 public class SimplePromptExample {
 
     private final ChatClient chatClient;
-
-    public SimplePromptExample(ChatClient.Builder chatClientBuilder) {
-        this.chatClient = chatClientBuilder.build();
-    }
 
     @GetMapping("/blocking-content")
     public ChatResponse blockingContent(String userInput) {

@@ -1,6 +1,7 @@
 package com.kjung.springaipractice.app.example.chat;
 
 import com.kjung.springaipractice.app.example.chat.dto.ActorsFilms;
+import lombok.RequiredArgsConstructor;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.converter.BeanOutputConverter;
 import org.springframework.core.ParameterizedTypeReference;
@@ -13,14 +14,11 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/v1/example/structured")
 public class StructuredOutputExample {
 
     private final ChatClient chatClient;
-
-    public StructuredOutputExample(ChatClient.Builder chatClientBuilder) {
-        this.chatClient = chatClientBuilder.build();
-    }
 
     @GetMapping("/blocking-entity")
     public ActorsFilms blockingEntity() {

@@ -12,6 +12,9 @@ spring:
 
   # AI
   ai:
+    chat:
+      client:
+        enabled: false # ?? ?? ???? - AiConfig ? ??? ChatClient ? ???? ??
     ollama:
       base-url: ${ollama-base-url}
       chat:
