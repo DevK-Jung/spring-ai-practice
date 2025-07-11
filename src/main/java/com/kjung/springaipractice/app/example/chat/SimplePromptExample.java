@@ -1,4 +1,4 @@
-package com.kjung.springaipractice.app.example;
+package com.kjung.springaipractice.app.example.chat;
 
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.model.ChatResponse;

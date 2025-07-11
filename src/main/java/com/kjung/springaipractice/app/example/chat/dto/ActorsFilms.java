@@ -1,4 +1,4 @@
-package com.kjung.springaipractice.app.example.dto;
+package com.kjung.springaipractice.app.example.chat.dto;
 
 import java.util.List;
 

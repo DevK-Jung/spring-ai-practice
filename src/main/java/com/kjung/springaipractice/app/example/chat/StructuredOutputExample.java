@@ -1,6 +1,6 @@
-package com.kjung.springaipractice.app.example;
+package com.kjung.springaipractice.app.example.chat;
 
-import com.kjung.springaipractice.app.example.dto.ActorsFilms;
+import com.kjung.springaipractice.app.example.chat.dto.ActorsFilms;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.converter.BeanOutputConverter;
 import org.springframework.core.ParameterizedTypeReference;
