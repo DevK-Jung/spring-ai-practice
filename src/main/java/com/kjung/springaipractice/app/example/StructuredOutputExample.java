@@ -1,11 +1,9 @@
-package com.kjung.springaipractice.app.sample.controller;
+package com.kjung.springaipractice.app.example;
 
-import com.kjung.springaipractice.app.sample.dto.ActorsFilms;
+import com.kjung.springaipractice.app.example.dto.ActorsFilms;
 import org.springframework.ai.chat.client.ChatClient;
-import org.springframework.ai.chat.model.ChatResponse;
 import org.springframework.ai.converter.BeanOutputConverter;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,27 +13,17 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @RestController
-@RequestMapping("/api/v1/sample")
-public class SampleController {
+@RequestMapping("/api/v1/example/structured")
+public class StructuredOutputExample {
 
     private final ChatClient chatClient;
 
-    public SampleController(ChatClient.Builder chatClientBuilder) {
+    public StructuredOutputExample(ChatClient.Builder chatClientBuilder) {
         this.chatClient = chatClientBuilder.build();
     }
 
-    @GetMapping("/blocking")
-    public ChatResponse blocking(String userInput) {
-
-        return this.chatClient.prompt()
-                .user(userInput)
-                .call()
-                .chatResponse();
-    }
-
-    // entity 반환
     @GetMapping("/blocking-entity")
-    public ActorsFilms entity() {
+    public ActorsFilms blockingEntity() {
 
         return this.chatClient.prompt()
                 .user("한국 배우 이름과 출연 영화를 알려줘")
@@ -43,10 +31,8 @@ public class SampleController {
                 .entity(ActorsFilms.class);
     }
 
-
-    // entity 반환
     @GetMapping("/blocking-entities")
-    public List<ActorsFilms> entities() {
+    public List<ActorsFilms> blockingEntities() {
 
         return this.chatClient.prompt()
                 .user("한국 배우 이름과 출연 영화를 알려줘")
@@ -55,18 +41,9 @@ public class SampleController {
                 });
     }
 
-    @GetMapping(value = "/streaming", produces = MediaType.TEXT_EVENT_STREAM_VALUE)
-    public Flux<ChatResponse> streaming(String userInput) {
-
-        return this.chatClient.prompt()
-                .user(userInput)
-                .stream()
-                .chatResponse();
-    }
-
     // 스트리밍 데이터 구조화된 출력 변환기
-    @GetMapping(value = "/struct-streaming")
-    public List<ActorsFilms> structStreaming() {
+    @GetMapping(value = "/streaming-entities")
+    public List<ActorsFilms> streamingEntities() {
         var converter = new BeanOutputConverter<>(new ParameterizedTypeReference<List<ActorsFilms>>() {
         });
 
