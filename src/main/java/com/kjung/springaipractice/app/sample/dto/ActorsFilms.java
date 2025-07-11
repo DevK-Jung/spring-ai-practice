@@ -2,6 +2,6 @@ package com.kjung.springaipractice.app.sample.dto;
 
 import java.util.List;
 
-public record ActorFilms(String actor, List<String> movies) {
+public record ActorsFilms(String actor, List<String> movies) {
 }
 
