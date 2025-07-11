@@ -21,3 +21,13 @@ spring:
         options:
           model: gemma3:27b
           temperature: 0.7
+
+# ??? ??? advisor ???? ?? ??? ??? ?? ??
+logging:
+  level:
+    org:
+      springframework:
+        ai:
+          chat:
+            client:
+              advisor: DEBUG
