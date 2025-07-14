@@ -4,6 +4,28 @@ server:
 spring:
   application:
     name: spring-ai-practice
+  datasource:
+    url: jdbc:mysql://localhost:33066?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&allowMultiQueries=true
+    username: "root"
+    password: "1234"
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      pool-name: ai-hikari
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 600000         # 10분
+      max-lifetime: 1800000        # 30분
+      connection-timeout: 30000    # 30초
+      auto-commit: true
+  jpa:
+    hibernate:
+      ddl-auto: create       # create, create-drop, update, validate, none
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        dialect: org.hibernate.dialect.MySQL8Dialect
+        highlight_sql: false  # Hibernate 6 이상만
 
   # Spring Boot 3.4? ??? ?? "spring.http.client.factory=jdk" ??? ???? ???. ??? ??? ????? "reactor"? ???? ImageModel? ?? ?? AI ?????? ???? ????.
   http:
@@ -15,6 +37,10 @@ spring:
     chat:
       client:
         enabled: false # ?? ?? ???? - AiConfig ? ??? ChatClient ? ???? ??
+      memory:
+        repository:
+          jdbc:
+            initialize-schema: always #스키마를 초기화할 시기를 제어합니다. 값: embedded(기본값), always, never.
     ollama:
       base-url: ${ollama-base-url}
       chat:

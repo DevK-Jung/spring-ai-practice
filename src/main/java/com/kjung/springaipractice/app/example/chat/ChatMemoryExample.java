@@ -6,12 +6,12 @@ import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.client.advisor.SimpleLoggerAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.memory.MessageWindowChatMemory;
+import org.springframework.ai.chat.messages.Message;
 import org.springframework.ai.chat.model.ChatModel;
 import org.springframework.ai.chat.model.ChatResponse;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/chat-memory")
@@ -19,8 +19,13 @@ public class ChatMemoryExample {
 
     private final ChatClient chatClient;
 
-    public ChatMemoryExample(ChatModel chatModel) {
-        ChatMemory chatMemory = MessageWindowChatMemory.builder()
+    private final ChatMemory chatMemory;
+
+    public ChatMemoryExample(ChatModel chatModel
+//            , JdbcChatMemoryRepository jdbcChatMemoryRepository
+    ) {
+        this.chatMemory = MessageWindowChatMemory.builder()
+//                .chatMemoryRepository(jdbcChatMemoryRepository)
                 .maxMessages(10)
                 .build();
 
@@ -59,6 +64,20 @@ public class ChatMemoryExample {
     private String generateConversationId() {
         return "conv_" + System.currentTimeMillis() + "_" +
                 java.util.UUID.randomUUID().toString().substring(0, 8);
+    }
+
+    // Endpoint to view conversation history
+    @GetMapping("/history")
+    public List<Message> getHistory(String conversationId) {
+        return chatMemory.get(conversationId);
+    }
+
+    // Endpoint to clear conversation history
+    @DeleteMapping("/history")
+    public String clearHistory(String conversationId) {
+        chatMemory.clear(conversationId);
+
+        return "Conversation history cleared";
     }
 }
 
