@@ -1,4 +1,4 @@
-package com.kjung.springaipractice.core.prompt.constants;
+package com.kjung.springaipractice.core.aiPipeline.constants;
 
 public enum ResponseCallType {
     CONTENT,           // call().content() - String

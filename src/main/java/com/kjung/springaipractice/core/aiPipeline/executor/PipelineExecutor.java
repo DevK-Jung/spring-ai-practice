@@ -1,10 +1,10 @@
-package com.kjung.springaipractice.core.prompt.executor;
+package com.kjung.springaipractice.core.aiPipeline.executor;
 
-import com.kjung.springaipractice.core.prompt.config.PipelineConfig;
+import com.kjung.springaipractice.core.aiPipeline.config.PipelineConfig;
 import com.kjung.springaipractice.core.prompt.constants.PromptCategory;
 import com.kjung.springaipractice.core.prompt.constants.PromptType;
-import com.kjung.springaipractice.core.prompt.marker.PipelineRequest;
-import com.kjung.springaipractice.core.prompt.service.GenericAiPipeline;
+import com.kjung.springaipractice.core.aiPipeline.marker.PipelineRequest;
+import com.kjung.springaipractice.core.aiPipeline.service.GenericAiPipeline;
 import org.springframework.ai.chat.prompt.ChatOptions;
 
 import java.util.HashMap;

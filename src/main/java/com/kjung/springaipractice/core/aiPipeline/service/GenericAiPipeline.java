@@ -1,11 +1,11 @@
-package com.kjung.springaipractice.core.prompt.service;
+package com.kjung.springaipractice.core.aiPipeline.service;
 
-import com.kjung.springaipractice.core.prompt.config.PipelineConfig;
-import com.kjung.springaipractice.core.prompt.constants.ResponseCallType;
-import com.kjung.springaipractice.core.prompt.executor.PipelineExecutor;
+import com.kjung.springaipractice.core.aiPipeline.config.PipelineConfig;
+import com.kjung.springaipractice.core.aiPipeline.constants.ResponseCallType;
+import com.kjung.springaipractice.core.aiPipeline.executor.PipelineExecutor;
+import com.kjung.springaipractice.core.aiPipeline.marker.PipelineRequest;
 import com.kjung.springaipractice.core.prompt.manager.PromptManager;
 import com.kjung.springaipractice.core.prompt.mapper.PromptVariableMapper;
-import com.kjung.springaipractice.core.prompt.marker.PipelineRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
@@ -46,8 +46,8 @@ public class GenericAiPipeline {
         try {
             // 변수 및 프롬프트 준비
             Map<String, Object> variables;
-            if (requestOrVariables instanceof PipelineRequest) {
-                variables = prepareVariables((PipelineRequest) requestOrVariables, config);
+            if (requestOrVariables instanceof PipelineRequest pipelineRequest) {
+                variables = prepareVariables(pipelineRequest, config);
             } else {
                 variables = mergeVariables((Map<String, Object>) requestOrVariables, config.getExtraVariables());
             }

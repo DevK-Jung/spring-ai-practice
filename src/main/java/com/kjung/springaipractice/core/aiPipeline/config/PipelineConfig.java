@@ -1,8 +1,8 @@
-package com.kjung.springaipractice.core.prompt.config;
+package com.kjung.springaipractice.core.aiPipeline.config;
 
 import com.kjung.springaipractice.core.prompt.constants.PromptCategory;
 import com.kjung.springaipractice.core.prompt.constants.PromptType;
-import com.kjung.springaipractice.core.prompt.constants.ResponseCallType;
+import com.kjung.springaipractice.core.aiPipeline.constants.ResponseCallType;
 import lombok.Builder;
 import lombok.Getter;
 import org.springframework.ai.chat.prompt.ChatOptions;
