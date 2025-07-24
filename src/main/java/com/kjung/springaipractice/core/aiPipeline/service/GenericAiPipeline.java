@@ -4,6 +4,7 @@ import com.kjung.springaipractice.core.aiPipeline.config.PipelineConfig;
 import com.kjung.springaipractice.core.aiPipeline.constants.ResponseCallType;
 import com.kjung.springaipractice.core.aiPipeline.executor.PipelineExecutor;
 import com.kjung.springaipractice.core.aiPipeline.marker.PipelineRequest;
+import com.kjung.springaipractice.core.prompt.constants.PromptCategory;
 import com.kjung.springaipractice.core.prompt.manager.PromptManager;
 import com.kjung.springaipractice.core.prompt.mapper.PromptVariableMapper;
 import lombok.RequiredArgsConstructor;
@@ -136,8 +137,8 @@ public class GenericAiPipeline {
         return merged;
     }
 
-    public PipelineExecutor builder() {
-        return new PipelineExecutor(this);
+    public PipelineExecutor builder(PromptCategory category) {
+        return new PipelineExecutor(this, category);
     }
 
     private ChatClient.ChatClientRequestSpec buildChatClientCall(String systemPrompt, String userPrompt, PipelineConfig config) {
