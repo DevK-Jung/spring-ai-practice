@@ -1,5 +1,6 @@
 package com.kjung.springaipractice.app.translation.controller;
 
+import com.kjung.springaipractice.app.translation.dto.TranslateRespDto;
 import com.kjung.springaipractice.app.translation.dto.TranslationTextReqDto;
 import com.kjung.springaipractice.app.translation.service.TranslationService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -17,9 +18,9 @@ public class TranslationController {
 
     private final TranslationService translationService;
 
-    
+
     @PostMapping
-    public String translate(@RequestBody TranslationTextReqDto param) {
+    public TranslateRespDto translate(@RequestBody TranslationTextReqDto param) {
         return translationService.translate(param);
     }
 }
