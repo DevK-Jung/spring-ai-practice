@@ -5,7 +5,7 @@ spring:
   application:
     name: spring-ai-practice
   datasource:
-    url: jdbc:mysql://localhost:33066?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&allowMultiQueries=true
+    url: jdbc:mysql://localhost:33066/mydb?serverTimezone=Asia/Seoul&characterEncoding=UTF-8&allowMultiQueries=true
     username: "root"
     password: "1234"
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -46,7 +46,8 @@ spring:
       memory:
         repository:
           jdbc:
-            initialize-schema: always #스키마를 초기화할 시기를 제어합니다. 값: embedded(기본값), always, never.
+            initialize-schema: always #스키마를 초기화할 시기를 제어합니다. 값: embedded(기본값), always, never. 기본적으로 스키마 초기화는 내장 데이터베이스(H2, HSQL, Derby 등)에 대해서만 실행됩니다.c
+            schema: classpath:ddl/schema-mysql.sql
     ollama:
       base-url: ${ollama-base-url}
       chat:
