@@ -20,4 +20,9 @@ public class SummaryReqDto implements PipelineRequest {
     @PromptVariable
     @Schema(description = "대상", example = "탄소중립 실현을 위한 온실가스 감축은 선택이 아닌 필수 과제가 되었다.")
     private String text;
+
+    public SummaryReqDto(Integer summaryLength, String text) {
+        this.summaryLength = summaryLength;
+        this.text = text;
+    }
 }
