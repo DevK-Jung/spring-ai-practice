@@ -22,7 +22,4 @@ language-detection:
 
 # 요약
 summarization:
-  default: |
-    다음 텍스트를 요약해주세요:
-    
-    {text}
+  default: "다음 텍스트를 {summaryLength}자 이내로 요약해:\n\n{text}"

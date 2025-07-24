@@ -6,6 +6,7 @@ import com.kjung.springaipractice.app.language.service.LanguageService;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +19,7 @@ public class LanguageController {
     private final LanguageService languageService;
 
     @PostMapping("/detect")
-    public LanguageDetectionRespDto languageDetect(LanguageDetectionReqDto param) {
+    public LanguageDetectionRespDto languageDetect(@RequestBody LanguageDetectionReqDto param) {
         return languageService.languageDetect(param.getText());
     }
 
