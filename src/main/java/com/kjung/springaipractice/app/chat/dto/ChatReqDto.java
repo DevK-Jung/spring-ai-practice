@@ -9,8 +9,8 @@ import lombok.Setter;
 @Setter
 public class ChatReqDto {
     @NotBlank
-    @Schema(description = "안녕? 내 이름은 K야")
+    @Schema(description = "대상", example = "안녕? 내 이름은 K야")
     private String text;
-    @Schema(description = "conv_1753336667165_c030368c")
+    @Schema(description = "대화 ID", example = "conv_1753336667165_c030368c")
     private String conversationId;
 }
